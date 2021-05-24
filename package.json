@@ -1,0 +1,43 @@
+{
+  "name": "acast-notifier",
+  "version": "1.0.0",
+  "description": "Get notified about new podcast episodes for Acast shows",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knutakir/acast-notifier.git"
+  },
+  "keywords": [
+    "acast",
+    "podcast",
+    "notifier",
+    "docker",
+    "discord"
+  ],
+  "author": "Knut Kirkhorn",
+  "type": "module",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Knutakir/acast-notifier/issues"
+  },
+  "homepage": "https://github.com/Knutakir/acast-notifier#readme",
+  "dependencies": {
+    "dayjs": "^1.10.4",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "got": "^11.8.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.3"
+  }
+}

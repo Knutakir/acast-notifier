@@ -15,14 +15,8 @@ Notifies on Discord if there are new [Acast](https://acast.com) episodes for giv
 This will pull the image from [Docker Hub](https://hub.docker.com/) and run the image with the provided configuration for web hooks as below. One can provide only the Webhook URL or both the Webhook ID and token.
 
 ```sh
-# Providing Discord Webhook URL
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> knutkirkhorn/acast-notifier
-
-# Providing a show
-$ docker run -d \
-    -e DISCORD_WEBHOOK_URL=<URL_HERE> \
-    -e SHOW=krimpodden \
-    knutkirkhorn/acast-notifier
+# Providing a Discord Webhook URL and a show
+$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOW=krimpodden knutkirkhorn/acast-notifier
 ```
 
 #### From source code

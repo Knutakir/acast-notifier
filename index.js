@@ -17,11 +17,6 @@ if (!(discordWebhookUrl || (discordWebhookID !== '' && discordWebhookToken !== '
     throw new Error('You need to specify either Discord Webhook URL or both Discord Webhook ID and token!');
 }
 
-// Ensure a show is provided
-if (!config.show) {
-    throw new Error('You need to specify show to watch!');
-}
-
 // Retrieve the ID and token from the Webhook URL
 // This is from the Discord Webhook URL format:
 // 'https://discord.com/api/webhooks/<ID_HERE>/<TOKEN_HERE>'
@@ -32,14 +27,26 @@ const discordHookClient = new Discord.WebhookClient(webhookID, webhookToken);
 // Wait for a specified time (milliseconds)
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+// Ensure a show is provided
+if (!config.shows) {
+    throw new Error('You need to specify a show to watch!');
+}
+
 const apiBaseUrl = 'https://feeder.acast.com/api/v1/shows';
 const podcastBaseUrl = 'https://play.acast.com/s';
-let watchingShow = {
-    name: config.show,
-    url: `${apiBaseUrl}/${config.show}`,
+const shows = config.shows.split(',').map(show => show.trim()).filter(show => show !== '');
+
+// Ensure at least one show is provided
+if (shows.length === 0) {
+    throw new Error('You need to specify a show to watch!');
+}
+
+const watchingShows = shows.map(show => ({
+    name: show,
+    url: `${apiBaseUrl}/${show}`,
     publishDate: '',
     initialCheck: true
-};
+}));
 
 async function checkForNewEpisode(show) {
     const response = await got(show.url, {headers: httpHeader}).json();
@@ -90,8 +97,11 @@ async function checkForNewEpisode(show) {
         try {
             console.log('Checking for new podcasts at:', new Date());
 
-            // eslint-disable-next-line no-await-in-loop
-            watchingShow = await checkForNewEpisode(watchingShow);
+            for (let i = 0; i < watchingShows.length; i++) {
+                const watchingShow = watchingShows[i];
+                // eslint-disable-next-line no-await-in-loop
+                watchingShows[i] = await checkForNewEpisode(watchingShow);
+            }
         } catch (error) {
             console.log(error);
         } finally {

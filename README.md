@@ -15,8 +15,11 @@ Notifies on Discord if there are new [Acast](https://acast.com) episodes for giv
 This will pull the image from [Docker Hub](https://hub.docker.com/) and run the image with the provided configuration for web hooks as below. One can provide only the Webhook URL or both the Webhook ID and token.
 
 ```sh
-# Providing a Discord Webhook URL and a show
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOW=krimpodden knutkirkhorn/acast-notifier
+# Providing a Discord Webhook URL and a single show
+$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden knutkirkhorn/acast-notifier
+
+# Providing a Discord Webhook URL and multiple shows
+$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgang knutkirkhorn/acast-notifier
 ```
 
 #### From source code
@@ -24,8 +27,11 @@ $ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOW=krimpodden knutkirkhor
 # Build container from source
 $ docker build -t acast-notifier .
 
-# Providing a show
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOW=krimpodden acast-notifier
+# Providing a single show
+$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden acast-notifier
+
+# Providing multiple shows
+$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgang acast-notifier
 ```
 
 ### Outside of a Docker container
@@ -50,8 +56,8 @@ Provide these with the docker run command or store these in a `.env` file.
 - `WAIT_TIMEOUT` ***(optional)***
     - The time interval in milliseconds between each check to the APIs.
     - Default: `3600000` (60 minutes)
-- `SHOW`
-    - The name of the show to notify about new episodes. The show name can be retrieved from URL: `https://play.acast.com/s/<show_name>`
+- `SHOWS`
+    - An array containing the names of the shows to notify about new episodes. The show names can be retrieved from the URL: `https://play.acast.com/s/<show_name>`
 - `TIME_FORMAT` ***(optional)***
     - The time format for the `Updated` field in the Discord message.
     - Default: `dddd D MMMM YYYY HH:mm`

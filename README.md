@@ -3,7 +3,7 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/knutkirkhorn/acast-notifier)](https://hub.docker.com/r/knutkirkhorn/acast-notifier) [![Docker Image Size](https://badgen.net/docker/size/knutkirkhorn/acast-notifier)](https://hub.docker.com/r/knutkirkhorn/acast-notifier)
 
-Notifies on Discord if there are new [Acast](https://acast.com) episodes for given show. Uses their [Feeder API](https://feeder.acast.com/api/v1) for fetching episodes from shows. It notifies to a Discord channel using [Discord Webhooks](https://discord.com/developers/docs/resources/webhook).
+Notifies on Discord if there are new [Acast](https://acast.com) episodes for given show(s). Uses their [Feeder API](https://feeder.acast.com/api/v1) for fetching episodes from shows. It notifies to a Discord channel using [Discord Webhooks](https://discord.com/developers/docs/resources/webhook).
 
 <div align="center">
 	<img src="https://raw.githubusercontent.com/Knutakir/acast-notifier/main/media/top-image.png" alt="Acast episode notification example">

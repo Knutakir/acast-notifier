@@ -8,7 +8,7 @@ const HOUR_IN_MILLESECONDS = 3600000;
 
 export default {
     discordWebhookUrl: process.env.DISCORD_WEBHOOK_URL || '',
-    discordWebhookID: process.env.DISCORD_WEBHOOK_ID || '',
+    discordWebhookId: process.env.DISCORD_WEBHOOK_ID || '',
     discordWebhookToken: process.env.DISCORD_WEBHOOK_TOKEN || '',
     waitTimeout: process.env.WAIT_TIMEOUT || HOUR_IN_MILLESECONDS,
     shows: process.env.SHOWS,

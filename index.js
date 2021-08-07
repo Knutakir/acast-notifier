@@ -1,11 +1,11 @@
-import Discord from 'discord.js';
+import {MessageEmbed, WebhookClient} from 'discord.js';
 import got from 'got';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration.js';
 import httpHeader from './util.js';
 import config from './config.js';
 
-const {discordWebhookUrl, discordWebhookID, discordWebhookToken} = config;
+const {discordWebhookUrl, discordWebhookId, discordWebhookToken} = config;
 
 dayjs.extend(duration);
 
@@ -13,16 +13,11 @@ dayjs.extend(duration);
 dayjs.locale(config.timeLocale);
 
 // Check if either Discord Webhook URL or Discord Webhook ID and token is provided
-if (!(discordWebhookUrl || (discordWebhookID !== '' && discordWebhookToken !== ''))) {
+if (!(discordWebhookUrl || (discordWebhookId !== '' && discordWebhookToken !== ''))) {
     throw new Error('You need to specify either Discord Webhook URL or both Discord Webhook ID and token!');
 }
 
-// Retrieve the ID and token from the Webhook URL
-// This is from the Discord Webhook URL format:
-// 'https://discord.com/api/webhooks/<ID_HERE>/<TOKEN_HERE>'
-// If the Webhook URL is empty get the values from the provided ID and token
-const [webhookID, webhookToken] = discordWebhookUrl ? discordWebhookUrl.split('/').splice(5, 2) : [discordWebhookID, discordWebhookToken];
-const discordHookClient = new Discord.WebhookClient(webhookID, webhookToken);
+const webhookClient = discordWebhookUrl ? new WebhookClient({url: discordWebhookUrl}) : new WebhookClient({id: discordWebhookId, token: discordWebhookToken});
 
 // Wait for a specified time (milliseconds)
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -66,7 +61,7 @@ async function checkForNewEpisode(show) {
 
         if (!initialCheck) {
             const podcastUrl = `${podcastBaseUrl}/${show.name}/${episode.acastId}`;
-            const embedMessage = new Discord.MessageEmbed()
+            const embedMessage = new MessageEmbed()
                 .setTitle('🎙️ **New Podcast** 🎙️')
                 .setThumbnail(episode.image)
                 .addField('Title', episode.title)
@@ -75,7 +70,7 @@ async function checkForNewEpisode(show) {
                 .addField('URL', `Listen to the podcast [here](${podcastUrl})`);
 
             // eslint-disable-next-line no-await-in-loop
-            await discordHookClient.send(embedMessage);
+            await webhookClient.send({embeds: [embedMessage]});
         }
     }
 

@@ -30,14 +30,14 @@
   },
   "homepage": "https://github.com/Knutakir/acast-notifier#readme",
   "dependencies": {
-    "dayjs": "^1.10.4",
-    "discord.js": "^12.5.3",
+    "dayjs": "^1.10.6",
+    "discord.js": "^13.0.1",
     "dotenv": "^10.0.0",
     "got": "^11.8.2"
   },
   "devDependencies": {
-    "eslint": "^7.27.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.3"
+    "eslint-plugin-import": "^2.23.4"
   }
 }

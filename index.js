@@ -2,6 +2,8 @@ import {MessageEmbed, WebhookClient} from 'discord.js';
 import got from 'got';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration.js';
+// eslint-disable-next-line import/no-unresolved
+import {setTimeout} from 'timers/promises';
 import httpHeader from './util.js';
 import config from './config.js';
 
@@ -18,9 +20,6 @@ if (!(discordWebhookUrl || (discordWebhookId !== '' && discordWebhookToken !== '
 }
 
 const webhookClient = discordWebhookUrl ? new WebhookClient({url: discordWebhookUrl}) : new WebhookClient({id: discordWebhookId, token: discordWebhookToken});
-
-// Wait for a specified time (milliseconds)
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // Ensure a show is provided
 if (!config.shows) {
@@ -101,7 +100,7 @@ async function checkForNewEpisode(show) {
             console.log(error);
         } finally {
             // eslint-disable-next-line no-await-in-loop
-            await wait(config.waitTimeout);
+            await setTimeout(config.waitTimeout);
         }
     }
 })();

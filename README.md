@@ -6,7 +6,7 @@
 Notifies on Discord if there are new [Acast](https://acast.com) episodes for given show(s). Uses their [Feeder API](https://feeder.acast.com/api/v1) for fetching episodes from shows. It notifies to a Discord channel using [Discord Webhooks](https://discord.com/developers/docs/resources/webhook).
 
 <div align="center">
-	<img src="https://raw.githubusercontent.com/Knutakir/acast-notifier/main/media/top-image.png" alt="Acast episode notification example">
+	<img src="https://raw.githubusercontent.com/knutkirkhorn/acast-notifier/main/media/top-image.png" alt="Acast episode notification example">
 </div>
 
 ## Usage
@@ -63,4 +63,4 @@ Provide these with the docker run command or store these in a `.env` file.
     - Default: `dddd D MMMM YYYY HH:mm`
 
 ## License
-MIT © [Knut Kirkhorn](https://github.com/Knutakir/acast-notifier/blob/main/LICENSE)
+MIT © [Knut Kirkhorn](https://github.com/knutkirkhorn/acast-notifier/blob/main/LICENSE)

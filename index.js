@@ -1,4 +1,4 @@
-import {MessageEmbed, WebhookClient} from 'discord.js';
+import {Formatters, MessageEmbed, WebhookClient} from 'discord.js';
 import got from 'got';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration.js';
@@ -10,9 +10,6 @@ import config from './config.js';
 const {discordWebhookUrl, discordWebhookId, discordWebhookToken} = config;
 
 dayjs.extend(duration);
-
-// Set the locale for the deadline
-dayjs.locale(config.timeLocale);
 
 // Check if either Discord Webhook URL or Discord Webhook ID and token is provided
 if (!(discordWebhookUrl || (discordWebhookId !== '' && discordWebhookToken !== ''))) {
@@ -65,7 +62,7 @@ async function checkForNewEpisode(show) {
                 .setThumbnail(episode.image)
                 .addField('Title', episode.title)
                 .addField('Duration', dayjs.duration(new Date(0).setSeconds(episode.duration)).format('HH:mm:ss'))
-                .addField('Date', dayjs(episode.publishDate).format(config.timeFormat))
+                .addField('Date', Formatters.time(new Date(episode.publishDate), Formatters.TimestampStyles.RelativeTime))
                 .addField('URL', `Listen to the podcast [here](${podcastUrl})`);
 
             // eslint-disable-next-line no-await-in-loop

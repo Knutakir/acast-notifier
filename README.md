@@ -58,9 +58,6 @@ Provide these with the docker run command or store these in a `.env` file.
     - Default: `3600000` (60 minutes)
 - `SHOWS`
     - An array containing the names of the shows to notify about new episodes. The show names can be retrieved from the URL: `https://play.acast.com/s/<show_name>`
-- `TIME_FORMAT` ***(optional)***
-    - The time format for the `Updated` field in the Discord message.
-    - Default: `dddd D MMMM YYYY HH:mm`
 
 ## License
 MIT © [Knut Kirkhorn](https://github.com/knutkirkhorn/acast-notifier/blob/main/LICENSE)

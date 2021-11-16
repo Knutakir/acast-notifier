@@ -11,6 +11,5 @@ export default {
     discordWebhookId: process.env.DISCORD_WEBHOOK_ID || '',
     discordWebhookToken: process.env.DISCORD_WEBHOOK_TOKEN || '',
     waitTimeout: process.env.WAIT_TIMEOUT || HOUR_IN_MILLESECONDS,
-    shows: process.env.SHOWS,
-    timeFormat: process.env.TIME_FORMAT || 'dddd D MMMM YYYY HH:mm'
+    shows: process.env.SHOWS
 };

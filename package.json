@@ -1,6 +1,7 @@
 {
   "name": "acast-notifier",
   "version": "1.0.0",
+  "private": true,
   "description": "Get notified about new podcast episodes for Acast shows",
   "main": "index.js",
   "scripts": {

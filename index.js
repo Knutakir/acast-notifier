@@ -82,22 +82,20 @@ async function checkForNewEpisode(show) {
     };
 }
 
-(async () => {
-    // Make it run forever
-    while (true) {
-        try {
-            console.log('Checking for new podcasts at:', new Date());
+// Make it run forever
+while (true) {
+    try {
+        console.log('Checking for new podcasts at:', new Date());
 
-            for (let i = 0; i < watchingShows.length; i++) {
-                const watchingShow = watchingShows[i];
-                // eslint-disable-next-line no-await-in-loop
-                watchingShows[i] = await checkForNewEpisode(watchingShow);
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
+        for (let i = 0; i < watchingShows.length; i++) {
+            const watchingShow = watchingShows[i];
             // eslint-disable-next-line no-await-in-loop
-            await setTimeout(config.waitTimeout);
+            watchingShows[i] = await checkForNewEpisode(watchingShow);
         }
+    } catch (error) {
+        console.log(error);
+    } finally {
+        // eslint-disable-next-line no-await-in-loop
+        await setTimeout(config.waitTimeout);
     }
-})();
+}

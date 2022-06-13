@@ -1,9 +1,7 @@
 import {Formatters, MessageEmbed, WebhookClient} from 'discord.js';
-// eslint-disable-next-line import/no-unresolved
 import got from 'got';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration.js';
-// eslint-disable-next-line import/no-unresolved
 import {setTimeout} from 'timers/promises';
 import httpHeader from './util.js';
 import config from './config.js';
@@ -66,7 +64,6 @@ async function checkForNewEpisode(show) {
                 .addField('Date', Formatters.time(new Date(episode.publishDate), Formatters.TimestampStyles.RelativeTime))
                 .addField('URL', `Listen to the podcast [here](${podcastUrl})`);
 
-            // eslint-disable-next-line no-await-in-loop
             await webhookClient.send({embeds: [embedMessage]});
         }
     }
@@ -90,13 +87,11 @@ while (true) {
 
         for (let i = 0; i < watchingShows.length; i++) {
             const watchingShow = watchingShows[i];
-            // eslint-disable-next-line no-await-in-loop
             watchingShows[i] = await checkForNewEpisode(watchingShow);
         }
     } catch (error) {
         console.log(error);
     } finally {
-        // eslint-disable-next-line no-await-in-loop
         await setTimeout(config.waitTimeout);
     }
 }

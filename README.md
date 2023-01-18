@@ -1,4 +1,5 @@
 # acast-notifier
+
 > 🎙️ Get notified about new podcast episodes for [Acast](https://acast.com) shows
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/knutkirkhorn/acast-notifier)](https://hub.docker.com/r/knutkirkhorn/acast-notifier) [![Docker Image Size](https://badgen.net/docker/size/knutkirkhorn/acast-notifier)](https://hub.docker.com/r/knutkirkhorn/acast-notifier)
@@ -10,8 +11,11 @@ Notifies on Discord if there are new [Acast](https://acast.com) episodes for giv
 </div>
 
 ## Usage
+
 ### Within a Docker container
+
 #### From Docker Hub Image
+
 This will pull the image from [Docker Hub](https://hub.docker.com/) and run the image with the provided configuration for web hooks as below. One can provide only the Webhook URL or both the Webhook ID and token.
 
 ```sh
@@ -23,6 +27,7 @@ $ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgan
 ```
 
 #### From source code
+
 ```sh
 # Build container from source
 $ docker build -t acast-notifier .
@@ -35,6 +40,7 @@ $ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgan
 ```
 
 ### Outside of a Docker container
+
 ```sh
 # Install
 $ npm install
@@ -44,6 +50,7 @@ $ npm start
 ```
 
 ### Environment variables
+
 Provide these with the docker run command or store these in a `.env` file.
 
 - `DISCORD_WEBHOOK_URL`
@@ -58,6 +65,3 @@ Provide these with the docker run command or store these in a `.env` file.
     - Default: `3600000` (60 minutes)
 - `SHOWS`
     - An array containing the names of the shows to notify about new episodes. The show names can be retrieved from the URL: `https://play.acast.com/s/<show_name>`
-
-## License
-MIT © [Knut Kirkhorn](https://github.com/knutkirkhorn/acast-notifier/blob/main/LICENSE)

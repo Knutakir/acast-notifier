@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration.js';
 import {setTimeout} from 'timers/promises';
 import discordWebhookWrapper from 'discord-webhook-wrapper';
-import httpHeader from './util.js';
+import getPackageUserAgent from 'package-user-agent';
 import config from './config.js';
 
 dayjs.extend(duration);
@@ -34,7 +34,8 @@ const watchingShows = shows.map(show => ({
 }));
 
 async function checkForNewEpisode(show) {
-    const response = await got(show.url, {headers: httpHeader}).json();
+    const packageUserAgent = await getPackageUserAgent();
+    const response = await got(show.url, {headers: packageUserAgent}).json();
     const {publishDate} = response;
 
     if (publishDate === show.publishDate || response.episodes.length === 0) {

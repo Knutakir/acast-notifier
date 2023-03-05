@@ -20,33 +20,33 @@ This will pull the image from [Docker Hub](https://hub.docker.com/) and run the 
 
 ```sh
 # Providing a Discord Webhook URL and a single show
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden knutkirkhorn/acast-notifier
+docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden knutkirkhorn/acast-notifier
 
 # Providing a Discord Webhook URL and multiple shows
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgang knutkirkhorn/acast-notifier
+docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgang knutkirkhorn/acast-notifier
 ```
 
 #### From source code
 
 ```sh
 # Build container from source
-$ docker build -t acast-notifier .
+docker build -t acast-notifier .
 
 # Providing a single show
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden acast-notifier
+docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden acast-notifier
 
 # Providing multiple shows
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgang acast-notifier
+docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> -e SHOWS=krimpodden,verdensgang acast-notifier
 ```
 
 ### Outside of a Docker container
 
 ```sh
 # Install
-$ npm install
+npm install
 
 # Run
-$ npm start
+npm start
 ```
 
 ### Environment variables

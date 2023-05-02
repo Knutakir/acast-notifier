@@ -1,5 +1,4 @@
 import {Formatters, EmbedBuilder} from 'discord.js';
-// eslint-disable-next-line import/no-unresolved
 import got from 'got';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration.js';
